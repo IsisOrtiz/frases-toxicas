@@ -24,19 +24,6 @@ def carregar_palavras_toxicas(nome_arquivo):
 def tokenizar_frase(frase):
     return word_tokenize(frase.lower())
 
-# Função para preparar os dados de treinamento
-def prepare_data(training_data, vocab_to_index):
-    data = []
-    for sentence, label in training_data:
-        tokens = [word.lower() for word in word_tokenize(sentence) if word not in stopwords.words('portuguese')]
-        if not tokens:
-            continue  # Ignorar frases sem tokens após remoção de stop words
-        indices = [vocab_to_index.get(word, vocab_to_index['<UNK>']) for word in tokens]
-        data.append((torch.tensor(indices, dtype=torch.long), torch.tensor([label], dtype=torch.float)))
-
-    return data
-
-# ...
 def processa_frases(_frases):
     nome_arquivo_palavras = "palavrastoxicas.txt"
     palavras_toxicas = carregar_palavras_toxicas(nome_arquivo_palavras)
@@ -68,7 +55,6 @@ def processa_frases(_frases):
                 training_data.append((frase, rotulo))
             else:
                 print(f"Aviso: A linha '{linha.strip()}' não está no formato esperado e será ignorada.")
-
 
         # Adicionando palavras tóxicas diretamente ao array training_data
         for i, (sentence, _) in enumerate(training_data):
