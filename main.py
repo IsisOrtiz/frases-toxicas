@@ -23,7 +23,6 @@ if __name__ == "__main__":
         ]
         """
         #Teste de moidelo   
-        """
         frases = [
             "que nojo, falar com você pelo telefone",
             "adoro falar com voce pelo telefone",
@@ -32,13 +31,7 @@ if __name__ == "__main__":
             "seu trabalho é bom"
         ]
 
-        """
 
-        frases = [
-            "atendimento é a mãe",
-            "minha vida é melhor com seu trabalho",
-            "minha vida é melhor que o seu trabalho",
-        ]
 
         processa_frases(frases)
         ##
