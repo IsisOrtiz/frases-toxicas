@@ -1,0 +1,12 @@
+[
+    { "frase":"miha vida seria melhor se vc fizesse seu trabalho","toxica":true , "peso":3},
+    { "frase":"minha vida é melhor com seu trabalho","toxica":false , "peso":0},
+    { "frase":"minha vida é melhor","toxica":false , "peso":0},
+    { "frase":"vida é melhor","toxica":false , "peso":0},
+    { "frase":"trabalho é bom","toxica":false , "peso":0},
+    { "frase":"adoro falar com voce","toxica":false , "peso":0},
+    { "frase":"que nojo falar com você","toxica":true , "peso":5},
+    { "frase":"um anjo","toxica":false , "peso":10},
+    { "frase":"um anjo mau","toxica":true , "peso":2}
+
+]
