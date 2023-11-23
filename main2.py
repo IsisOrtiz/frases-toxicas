@@ -55,9 +55,10 @@ def processar_frases():
             for _ in range(1 if peso == 0 else peso):
                 training_data.append((frase, rotulo))
 
-        for i, (sentence, _) in enumerate(training_data):
-            if any(word in palavras_toxicas for word in tokenizar_frase(sentence)):
-                training_data[i] = (sentence, 1)
+        for i, (sentence, _tx) in enumerate(training_data):
+            if (_tx == 1):
+                if any(word in palavras_toxicas for word in tokenizar_frase(sentence)):
+                    training_data[i] = (sentence, 1)
 
         for sentence, _ in training_data:
             tokens = [word.lower() for word in word_tokenize(sentence) if word not in stopwords.words('portuguese')]
@@ -91,7 +92,9 @@ def processar_frases():
             "seu trabalho é bom"
         ]
 
+
         for frase in _frases:
+
             indices = [vocab_to_index.get(word, vocab_to_index['<UNK>']) for word in word_tokenize(frase.lower())]
             if not indices:
                 continue
