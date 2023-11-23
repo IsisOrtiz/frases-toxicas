@@ -7,6 +7,20 @@ from classifier import ToxicityClassifier
 import json
 from nltk.corpus import stopwords
 
+
+def ler_arquivo_txt(nome_arquivo):
+    try:
+        with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+            # Lê todas as linhas do arquivo e remove espaços em branco
+            frases = [linha.strip() for linha in arquivo.readlines()]
+            return frases
+    except FileNotFoundError:
+        print(f"O arquivo '{nome_arquivo}' não foi encontrado.")
+        return None
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+        return None
+
 def tokenizar_frase(frase):
     return word_tokenize(frase.lower())
 
@@ -56,6 +70,7 @@ def processar_frases():
                 training_data.append((frase, rotulo))
 
         for i, (sentence, _tx) in enumerate(training_data):
+            #Valida se a frase é toxica apartir do modelo
             if (_tx == 1):
                 if any(word in palavras_toxicas for word in tokenizar_frase(sentence)):
                     training_data[i] = (sentence, 1)
@@ -84,14 +99,8 @@ def processar_frases():
                 loss.backward()
                 optimizer.step()
 
-        _frases = [
-            "que nojo, falar com você pelo telefone",
-            "adoro falar com voce pelo telefone",
-            "miha vida seria melhor se vc fizesse seu trabalho",
-            "minha vida é melhor com seu trabalho",
-            "seu trabalho é bom"
-        ]
 
+        _frases = ler_arquivo_txt("frases_teste/frases.txt")
 
         for frase in _frases:
 

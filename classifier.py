@@ -8,6 +8,7 @@ class ToxicityClassifier(nn.Module):
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
         self.fc = nn.Linear(embedding_dim, output_size)
 
+
     def forward(self, x):
         x = self.embedding(x)
         x = x.mean(dim=1)  # Média sobre as dimensões do embedding
