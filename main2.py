@@ -6,6 +6,7 @@ from nltk.tokenize import word_tokenize
 from classifier import ToxicityClassifier
 import json
 from nltk.corpus import stopwords
+from tabulate import tabulate
 
 
 def ler_arquivo_txt(nome_arquivo):
@@ -102,6 +103,9 @@ def processar_frases():
 
         _frases = ler_arquivo_txt("frases_teste/frases.txt")
 
+        print("Indice de corte de analise 0.5")
+        cabecalho = ["Frase", "Classificação", "Predição"]
+        dados = []
         for frase in _frases:
 
             indices = [vocab_to_index.get(word, vocab_to_index['<UNK>']) for word in word_tokenize(frase.lower())]
@@ -118,7 +122,12 @@ def processar_frases():
             target = torch.tensor([1] if any(word in palavras_toxicas for word in tokenizar_frase(frase)) else [0], dtype=torch.float).view(1, -1)
             loss = F.binary_cross_entropy(output, target)
 
-            print(f"Frase: '{frase}' - Classificação: {predicted_label} - Predição: {outpt_predict}")
+            #print(f"Frase: '{frase}' - Classificação: {predicted_label} - Predição: {outpt_predict}")
+            # Imprimir a tabela
+
+            dados.append([frase, predicted_label, outpt_predict])
+
+        print(tabulate(dados, headers=cabecalho, tablefmt="grid"))
 
 if __name__ == "__main__":
     processar_frases()

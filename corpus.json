@@ -7,6 +7,12 @@
     { "frase":"adoro falar com voce","toxica":false , "peso":0},
     { "frase":"que nojo falar com você","toxica":true , "peso":5},
     { "frase":"um anjo","toxica":false , "peso":10},
-    { "frase":"um anjo mau","toxica":true , "peso":2}
+    { "frase":"um anjo mau","toxica":true , "peso":2},
+    { "frase":"Parabéns atendimento horrível","toxica":true , "peso":2},
+    { "frase":"Parabéns atendimento ","toxica":false , "peso":2},
+    { "frase":"ser mais umilde","toxica":false , "peso":2},
+    { "frase":"deselegante","toxica":true , "peso":0},
+    { "frase":"desequilibrio","toxica":true , "peso":4}
+
 
 ]
